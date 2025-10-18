@@ -1,0 +1,11 @@
+-- 코드를 입력하세요
+# 진료예약번호, 환자이름, 환자번호, 진료과코드, 의사이름, 진료예약일시
+# 2022-04-13 취소되지 않은 흉부외과(CS) 진료 예약 내역
+SELECT A.APNT_NO, P.PT_NAME, P.PT_NO, D.MCDP_CD, D.DR_NAME, A.APNT_YMD 
+FROM APPOINTMENT A JOIN DOCTOR D 
+ON A.MDDR_ID = D.DR_ID 
+JOIN PATIENT P 
+ON A.PT_NO = P.PT_NO
+WHERE A.APNT_YMD LIKE '2022-04-13%' AND A.APNT_CNCL_YN = 'N'
+AND D.MCDP_CD = 'CS'
+ORDER BY A.APNT_YMD ASC
